@@ -1,0 +1,14 @@
+Task 1: Data Preprocessing
+For the read prediction task, I converted all ratings in train_Interactions.csv to a value of 5, indicating that a book had been read. I then created an equal amount of negative samples for books that users hadn’t read, assigning these pairs a rating of 0. For the ratings prediction task, I used the original train_Interactions.csv dataset without modification.
+
+Task 2: Model Selection
+I used the Surprise library's SVD algorithm with tailored hyperparameters (n_factors, n_epochs, lr_all, reg_all) chosen to optimize performance for each task.
+
+Task 3: Training and Fine-Tuning
+The dataset was divided into a training set and a test set, using a 95% to 5% split. I used GridSearchCV from surprise.model_selection to fine-tune the hyperparameters. The best-performing hyperparameters were as follows:
+
+Read Prediction: n_factors=50, n_epochs=10, lr_all=0.005, reg_all=0.05
+Ratings Prediction: n_factors=25, n_epochs=20, lr_all=0.01, reg_all=0.3
+
+Task 4: Model Evaluation
+The threshold of read prediction model was set to 2.35 after fine-tuning. Using the final models, I evaluated accuracy for read prediction and MSE for rating prediction to assess predictive performance. 
